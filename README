@@ -1,0 +1,12 @@
+To run the program:
+1. make main
+2. cd dist
+3. ./main ../inputFiles/wordsForBigDict.txt ../inputFiles/BigDict.txt
+(you will see how 'last' is transformed to 'face' using a dictionary of 999 words) 
+
+To run the tests:
+1. make tests
+2. cd dist
+3. ./tests
+
+Run 'make' without parameters for both main and tests targets.
