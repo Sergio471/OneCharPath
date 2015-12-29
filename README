@@ -1,3 +1,5 @@
+Finds the shortest path from one word to another where two consecutive words differ by a single char.
+
 To run the program:
 1. make main
 2. cd dist
