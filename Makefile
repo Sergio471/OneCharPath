@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-std=c++11
+CFLAGS=-std=c++11 -O2
 
 SOURCES=$(addprefix src/, graph.cpp input.cpp)
 MAIN_SOURCES=$(addprefix src/, main.cpp)
