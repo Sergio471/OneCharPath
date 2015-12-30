@@ -38,7 +38,7 @@ vector<string> getStringReplacements(string const &s);
  * The data structure makes it easier to look up words, which differ
  * from a given word by a single character.
  */
-unordered_map<string, vector<string> > getReplMapFromDictionary(vector<string> &dict);
+void getReplMapFromDictionary(vector<string> &dict, unordered_map<string, vector<string> > &graph);
 
 /*
  * Returns a collection words which differ from a given word s by a single character.ui

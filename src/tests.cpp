@@ -54,7 +54,8 @@ TEST_CASE( "Word replacements", "[repl]" )
 TEST_CASE( "Graph construction and neighbors", "[graph]" )
 {
     vector<string> dictionary = getDictionary("../inputFiles/dict.txt");
-    unordered_map<string, vector<string> > replMap = getReplMapFromDictionary(dictionary);
+    unordered_map<string, vector<string> > replMap;
+    getReplMapFromDictionary(dictionary, replMap);
 
     // Tests if a word replacement maps to correct vector of strings.
     vector<string> v1 = {"CAT", "FAT", "BAT"};
@@ -133,7 +134,8 @@ bool diffByOne(string const &s1, string const &s2)
 TEST_CASE( "Final randomized test on a big dictionary", "[final]" )
 {
     vector<string> dictionary = getDictionary("../inputFiles/BigDict.txt");
-    unordered_map<string, vector<string> > replMap = getReplMapFromDictionary(dictionary);
+    unordered_map<string, vector<string> > replMap;
+    getReplMapFromDictionary(dictionary, replMap);
 
     srand(time(NULL));
 

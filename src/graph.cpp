@@ -8,43 +8,43 @@
 
 using namespace std;
 
-vector<string> getStringReplacements(string const &s)
+void getStringReplacements(string const &s, vector<string> &replacements)
 {
-    vector<string> replacements;
-
     for (int i = 0; i < s.size(); i++)
     {
         string repl = s.substr(0, i) + s.substr(i + 1, s.size() - i - 1) + to_string(i);
         replacements.push_back(repl);
     }
-
-    return replacements;
 }
 
-unordered_map<string, vector<string> > getReplMapFromDictionary(vector<string> &dict)
+void getReplMapFromDictionary(vector<string> &dict, unordered_map<string, vector<string> > &graph)
 {
-    unordered_map<string, vector<string> > graph;
+    //unordered_map<string, vector<string> > graph;
     
     for (auto &w : dict)
     {
-        vector<string> replacements = getStringReplacements(w);
+        vector<string> replacements;
+        replacements.reserve(w.size());
+        getStringReplacements(w, replacements);
         for (auto &r : replacements)
         {
             graph[r].push_back(w);
         }
     }
 
-    return graph;
+    //return graph;
 }
 
-vector<string> getNeighbors(string const &s, unordered_map<string, vector<string> > &graph)
+void getNeighbors(string const &s, unordered_map<string, vector<string> > &graph, vector<string> &nbrs)
 {
-    vector<string> nbrs;
-    vector<string> replacements = getStringReplacements(s);
+    //vector<string> nbrs;
+    vector<string> replacements;
+    replacements.reserve(s.size());
+    getStringReplacements(s, replacements);
     
     for (auto &r : replacements)
     {
-        vector<string> candidateNbrs = graph[r];
+        vector<string> &candidateNbrs = graph[r];
         for (auto &cNbr : candidateNbrs)
         {
             if (cNbr != s)
@@ -53,8 +53,6 @@ vector<string> getNeighbors(string const &s, unordered_map<string, vector<string
             }
         }
     }
-    
-    return nbrs;
 }
 
 vector<string> getPath(string const &start, string const &end, unordered_map<string, vector<string> > &graph)
@@ -72,7 +70,8 @@ vector<string> getPath(string const &start, string const &end, unordered_map<str
     {
         string cur = q.front();
         q.pop();
-        vector<string> nbrs = getNeighbors(cur, graph);
+        vector<string> nbrs;
+        getNeighbors(cur, graph, nbrs);
         
         for (auto &nbr : nbrs)
         {
